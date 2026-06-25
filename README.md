@@ -28,9 +28,6 @@ site/
     │
     ├── assets/
     │   └── pics/                 # Images used by <Image> component
-    │       ├── IMG-20240818-WA0007.jpg   # Homepage hero
-    │       ├── DSCN2746.JPG              # Portrait (Über mich)
-    │       ├── PXL_20260525_103844021.jpg # Contact hero
     │       ├── sommer/
     │       │   ├── felsklettern/
     │       │   └── hochtouren/
