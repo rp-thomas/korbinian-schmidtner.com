@@ -1,0 +1,129 @@
+---
+const navLinks = [
+  { href: '/sommer',    label: 'Sommer' },
+  { href: '/winter',    label: 'Winter' },
+  { href: '/ueber-mich',label: 'Über mich' },
+];
+
+const currentPath = Astro.url.pathname;
+const isHome = currentPath === '/';
+---
+
+<header
+  id="nav-b"
+  data-home={isHome}
+  class="fixed top-0 inset-x-0 z-50 transition-[background,box-shadow] duration-300"
+>
+  <div class="max-w-[1320px] mx-auto px-6 h-[76px] flex items-center gap-8">
+
+    <!-- Logo -->
+    <a href="/" class="flex flex-col leading-tight shrink-0 no-underline opacity-100 hover:opacity-90">
+      <span class="text-base font-bold text-white tracking-wide">Korbinian Schmidtner</span>
+      <span class="text-[0.6rem] font-semibold uppercase tracking-[0.18em] text-accent mt-px">IFMGA · Staatl. gepr. Bergführer</span>
+    </a>
+
+    <!-- Desktop nav -->
+    <nav class="hidden md:flex items-center gap-0.5 ml-auto" aria-label="Hauptnavigation">
+      {navLinks.map(link => (
+        <a
+          href={link.href}
+          class={[
+            'text-white/75 no-underline px-3.5 py-2 text-sm font-medium tracking-[0.04em] uppercase transition-colors duration-150 border-b-2',
+            currentPath.startsWith(link.href)
+              ? 'text-white border-accent opacity-100'
+              : 'border-transparent hover:text-white hover:opacity-100',
+          ].join(' ')}
+        >
+          {link.label}
+        </a>
+      ))}
+    </nav>
+
+    <!-- Desktop CTA -->
+    <div class="hidden md:flex items-center ml-2">
+      <a
+        href="/kontakt"
+        class="shrink-0 bg-accent text-white! no-underline px-5 py-2 text-[0.78rem] font-bold uppercase tracking-[0.1em] transition-colors duration-200 hover:bg-accent-hover hover:opacity-100 rounded-sm"
+      >
+        Anfrage stellen
+      </a>
+    </div>
+
+    <!-- Burger -->
+    <button
+      id="burger-b"
+      class="md:hidden flex flex-col justify-center gap-[5px] bg-transparent border-0 cursor-pointer p-2 ml-auto"
+      aria-label="Menü öffnen"
+      aria-expanded="false"
+    >
+      <span class="block w-[22px] h-0.5 bg-white/90 rounded-sm transition-transform duration-250 origin-center"></span>
+      <span class="block w-[22px] h-0.5 bg-white/90 rounded-sm transition-opacity duration-250"></span>
+      <span class="block w-[22px] h-0.5 bg-white/90 rounded-sm transition-transform duration-250 origin-center"></span>
+    </button>
+
+  </div>
+</header>
+
+<!-- Mobile drawer -->
+<div
+  id="drawer-b"
+  aria-hidden="true"
+  class="fixed top-[76px] inset-x-0 z-40 backdrop-blur-xl pointer-events-none opacity-0 -translate-y-full transition-[transform,opacity] duration-300"
+  style="background: var(--nav-solid);"
+>
+  <div class="max-w-[1320px] mx-auto px-6 flex flex-col gap-0.5 py-4">
+    {navLinks.map(link => (
+      <a
+        href={link.href}
+        class="text-white/70 no-underline px-3 py-4 text-lg font-medium uppercase tracking-[0.06em] border-b border-white/[0.08] transition-colors duration-150 hover:text-white hover:opacity-100"
+      >
+        {link.label}
+      </a>
+    ))}
+    <a
+      href="/kontakt"
+      class="mt-5 self-start bg-accent text-white! no-underline px-5 py-2 text-[0.78rem] font-bold uppercase tracking-[0.1em] rounded-sm transition-colors duration-200 hover:bg-accent-hover"
+    >
+      Anfrage stellen
+    </a>
+    <p class="text-[0.65rem] uppercase tracking-[0.15em] text-white/30 mt-4 px-3 pb-3">
+      IFMGA · Staatlich geprüfter Bergführer
+    </p>
+  </div>
+</div>
+
+<script>
+  const header  = document.getElementById('nav-b') as HTMLElement;
+  const burger  = document.getElementById('burger-b') as HTMLButtonElement;
+  const drawer  = document.getElementById('drawer-b') as HTMLElement;
+  const isHome  = header?.dataset.home === 'true';
+
+  function updateNav() {
+    if (!header) return;
+    const scrolled = isHome ? window.scrollY > 80 : true;
+    if (scrolled) {
+      header.style.background = 'var(--nav-solid)';
+      header.style.backdropFilter = 'blur(16px)';
+      header.style.boxShadow = '0 1px 0 rgba(255,255,255,0.06)';
+    } else {
+      header.style.background = 'transparent';
+      header.style.backdropFilter = '';
+      header.style.boxShadow = '';
+    }
+  }
+  updateNav();
+  window.addEventListener('scroll', updateNav, { passive: true });
+
+  burger?.addEventListener('click', () => {
+    const open = drawer?.getAttribute('aria-hidden') === 'false';
+    drawer?.setAttribute('aria-hidden', open ? 'true' : 'false');
+    burger.setAttribute('aria-expanded', (!open).toString());
+    if (!open) {
+      drawer.classList.remove('-translate-y-full', 'opacity-0', 'pointer-events-none');
+      drawer.classList.add('translate-y-0', 'opacity-100', 'pointer-events-auto');
+    } else {
+      drawer.classList.add('-translate-y-full', 'opacity-0', 'pointer-events-none');
+      drawer.classList.remove('translate-y-0', 'opacity-100', 'pointer-events-auto');
+    }
+  });
+</script>

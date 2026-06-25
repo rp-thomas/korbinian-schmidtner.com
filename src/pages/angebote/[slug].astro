@@ -1,0 +1,111 @@
+---
+import { Image } from 'astro:assets';
+import Layout from '../../layouts/Layout.astro';
+import { getEntry, render } from 'astro:content';
+
+const { slug } = Astro.params;
+if (!slug) return Astro.redirect('/');
+
+const entry = await getEntry('angebote', slug);
+if (!entry) return new Response('Nicht gefunden', { status: 404 });
+
+const { Content } = await render(entry);
+const { title, heroImage, beschreibung, leistungen, voraussetzungen, highlights, kategorie } = entry.data;
+
+const backHref  = kategorie === 'sommer' ? '/sommer' : '/winter';
+const backLabel = kategorie === 'sommer' ? '← Sommer' : '← Winter';
+---
+
+<Layout title={title} description={beschreibung}>
+
+  <!-- Hero -->
+  <div class="relative h-[65vh] min-h-[420px] overflow-hidden">
+    <Image src={heroImage} alt={title} class="w-full h-full object-cover" loading="eager" widths={[800,1200,1920]} sizes="100vw" />
+    <div class="absolute inset-0 flex items-end pb-16" style="background: var(--hero-overlay);">
+      <div class="max-w-[1320px] mx-auto w-full px-6">
+        <a href={backHref} class="block text-[0.72rem] font-bold uppercase tracking-[0.12em] text-white/60 mb-5 no-underline hover:text-white/95 transition-colors">{backLabel}</a>
+        <span class="block text-[0.62rem] font-bold uppercase tracking-[0.22em] text-accent mb-3">
+          {kategorie === 'sommer' ? 'Sommertour' : 'Wintertour'}
+        </span>
+        <h1 class="text-[clamp(2.5rem,6vw,5rem)] font-extrabold text-white tracking-[-0.04em] leading-[0.9]">{title}</h1>
+      </div>
+    </div>
+  </div>
+
+  <!-- Body -->
+  <div class="max-w-[1320px] mx-auto px-6 py-16 pb-24">
+    <div class="grid grid-cols-1 lg:grid-cols-[1fr_300px] gap-16 items-start">
+
+      <!-- Main content -->
+      <div class="flex flex-col gap-6">
+
+        <!-- Lead -->
+        <p class="text-[1.1rem] font-medium text-stone leading-[1.7] pb-6 border-b border-border">{beschreibung}</p>
+
+        <!-- Prose (markdown body) -->
+        <div class="prose">
+          <Content />
+        </div>
+
+        <!-- Leistungen -->
+        <div class="flex flex-col gap-3.5 pt-2">
+          <span class="text-[0.7rem] font-bold uppercase tracking-[0.18em] text-accent">Leistungen</span>
+          <div class="flex flex-col gap-2.5">
+            {leistungen.map(l => (
+              <div class="flex items-start gap-3 text-[0.9rem] text-stone-mid">
+                <span class="text-stone-muted font-bold text-[0.85rem] shrink-0 mt-0.5">✓</span>
+                <span>{l}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Highlights -->
+        {highlights && highlights.length > 0 && (
+          <div class="flex flex-col gap-3.5 pt-2">
+            <span class="text-[0.7rem] font-bold uppercase tracking-[0.18em] text-accent">Highlights</span>
+            <div class="flex flex-col gap-2.5">
+              {highlights.map(h => (
+                <div class="flex items-start gap-3 text-[0.9rem] text-stone-mid">
+                  <span class="text-accent font-bold text-[0.85rem] shrink-0 mt-0.5">★</span>
+                  <span>{h}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        <a href="/kontakt" class="self-start mt-2 inline-flex items-center gap-2 bg-accent text-white px-8 py-3.5 text-sm font-bold uppercase tracking-[0.08em] no-underline rounded-sm transition-[background,transform] duration-200 hover:bg-accent-hover hover:-translate-y-0.5">
+          Tour anfragen
+        </a>
+      </div>
+
+      <!-- Sidebar -->
+      <aside class="flex flex-col gap-6 lg:sticky lg:top-20">
+
+        <!-- Voraussetzungen -->
+        {voraussetzungen && voraussetzungen.length > 0 && (
+          <div class="border border-border p-6 flex flex-col gap-3">
+            <span class="text-[0.65rem] font-bold uppercase tracking-[0.18em] text-stone-muted">Voraussetzungen</span>
+            {voraussetzungen.map(v => (
+              <div class="flex items-start gap-3 text-[0.875rem] text-stone-mid">
+                <span class="w-1.5 h-1.5 rounded-full bg-stone-muted shrink-0 mt-[0.4rem]"></span>
+                <span>{v}</span>
+              </div>
+            ))}
+          </div>
+        )}
+
+        <!-- CTA box -->
+        <div class="bg-surface border border-border p-6 flex flex-col gap-4">
+          <p class="text-[0.875rem] font-semibold text-stone">Bereit für das Abenteuer?</p>
+          <a href="/kontakt" class="inline-flex items-center gap-2 bg-accent text-white px-6 py-3 text-sm font-bold uppercase tracking-[0.08em] no-underline rounded-sm transition-[background,transform] duration-200 hover:bg-accent-hover hover:-translate-y-0.5">
+            Anfrage stellen
+          </a>
+        </div>
+
+      </aside>
+    </div>
+  </div>
+
+</Layout>

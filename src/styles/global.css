@@ -1,0 +1,55 @@
+@import "tailwindcss";
+
+@theme {
+  /* Brand colours */
+  --color-accent:       #2f81f7;
+  --color-accent-hover: #1f6feb;
+  --color-stone:        #1a1a1a;
+  --color-stone-mid:    #4a4a4a;
+  --color-stone-muted:  #888888;
+  --color-surface:      #f5f3f0;
+  --color-border:       #e5e2de;
+  --color-border-strong:#c8c4bf;
+
+  /* Typography */
+  --font-sans: 'Inter', system-ui, sans-serif;
+
+  /* Shadows */
+  --shadow-card: 0 2px 12px rgba(0,0,0,0.08);
+  --shadow-hover: 0 8px 32px rgba(0,0,0,0.15);
+
+  /* Animations */
+  --animate-bounce-scroll: bounce-scroll 2s ease-in-out infinite;
+}
+
+@keyframes bounce-scroll {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50%       { transform: translateX(-50%) translateY(6px); }
+}
+
+/* Overlays — kept as CSS vars because they're used as background values */
+:root {
+  --hero-overlay:  linear-gradient(to bottom, rgba(0,0,0,0.10) 0%, rgba(0,0,0,0.65) 100%);
+  --card-overlay:  linear-gradient(to top,    rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.10) 65%);
+  --nav-solid:     rgba(26,26,26,0.97);
+}
+
+/* Base overrides on top of Tailwind preflight */
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-sans);
+  color: theme(--color-stone);
+  background: #fff;
+  line-height: 1.6;
+}
+
+/* Prose (rendered markdown) */
+.prose p         { line-height: 1.8; margin-bottom: 1.25rem; color: theme(--color-stone-mid); }
+.prose p:last-child { margin-bottom: 0; }
+.prose h2        { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: theme(--color-stone); margin-top: 2rem; margin-bottom: 0.75rem; }
+
+/* Scrollbar */
+::-webkit-scrollbar       { width: 6px; }
+::-webkit-scrollbar-track  { background: theme(--color-surface); }
+::-webkit-scrollbar-thumb  { background: theme(--color-border-strong); border-radius: 3px; }

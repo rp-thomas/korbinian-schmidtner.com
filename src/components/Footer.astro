@@ -1,0 +1,64 @@
+---
+---
+
+<footer class="bg-[#1a1a1a] text-white/75 pt-20 pb-8 mt-24">
+  <div class="max-w-[1320px] mx-auto px-6 flex flex-col gap-12">
+
+    <!-- Top: brand + nav -->
+    <div class="grid grid-cols-1 md:grid-cols-[280px_1fr] gap-16 items-start">
+
+      <!-- Brand -->
+      <div class="flex flex-col gap-2.5">
+        <a href="/" class="text-[1.1rem] font-bold text-white no-underline tracking-wide hover:opacity-85 transition-opacity">
+          Korbinian Schmidtner
+        </a>
+        <p class="text-[0.78rem] text-white/40 uppercase tracking-[0.12em]">
+          Staatlich geprüfter Bergführer
+        </p>
+        <div class="flex gap-2 flex-wrap mt-2">
+          {['IFMGA', 'DAV', 'Bergführer Bayern'].map(b => (
+            <span class="text-[0.65rem] font-bold uppercase tracking-[0.12em] text-white/50 border border-white/15 px-2.5 py-1 rounded-sm">
+              {b}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      <!-- Nav columns -->
+      <nav class="grid grid-cols-2 md:grid-cols-3 gap-8">
+        {[
+          { title: 'Sommer',  links: [{label:'Hochtouren',href:'/angebote/hochtouren'},{label:'Felsklettern',href:'/angebote/felsklettern'}] },
+          { title: 'Winter',  links: [{label:'Eisklettern',href:'/angebote/eisklettern'},{label:'Skitouren',href:'/angebote/skitouren'}] },
+          { title: 'Kontakt', links: [{label:'Über mich',href:'/ueber-mich'},{label:'Anfrage stellen',href:'/kontakt'}] },
+        ].map(col => (
+          <div class="flex flex-col gap-2.5">
+            <span class="text-[0.65rem] font-bold uppercase tracking-[0.2em] text-accent mb-1">{col.title}</span>
+            {col.links.map(l => (
+              <a href={l.href} class="text-[0.875rem] text-white/55 no-underline transition-colors duration-150 hover:text-white hover:opacity-100">
+                {l.label}
+              </a>
+            ))}
+          </div>
+        ))}
+      </nav>
+    </div>
+
+    <!-- CTA band -->
+    <div class="border-y border-white/[0.08] py-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-8 flex-wrap">
+      <p class="text-lg font-semibold text-white">Bereit für dein Bergabenteuer?</p>
+      <a
+        href="/kontakt"
+        class="shrink-0 bg-accent text-white no-underline px-8 py-3 text-[0.8rem] font-bold uppercase tracking-[0.1em] rounded-sm transition-colors duration-200 hover:bg-accent-hover hover:opacity-100"
+      >
+        Jetzt anfragen
+      </a>
+    </div>
+
+    <!-- Bottom -->
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-center flex-wrap gap-2">
+      <p class="text-[0.72rem] text-white/30">&copy; {new Date().getFullYear()} Korbinian Schmidtner · Alle Rechte vorbehalten</p>
+      <p class="text-[0.72rem] text-white/30">Staatlich geprüfter Bergführer · IFMGA Member</p>
+    </div>
+
+  </div>
+</footer>

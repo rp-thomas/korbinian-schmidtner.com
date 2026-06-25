@@ -1,0 +1,52 @@
+---
+import { Image } from 'astro:assets';
+import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+import heroImageSrc from '../assets/pics/winter/eisklettern/eisfall-daemmerung.jpg';
+
+const angebote = (await getCollection('angebote'))
+  .filter(e => e.data.kategorie === 'winter')
+  .sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
+---
+
+<Layout title="Winter" description="Wintertouren mit Korbinian Schmidtner – Eisklettern und Skitouren in den Alpen.">
+
+  <!-- Hero -->
+  <div class="relative h-[65vh] min-h-[420px] overflow-hidden">
+    <Image src={heroImageSrc} alt="Winterbergsteigen" class="w-full h-full object-cover object-[center_30%]" loading="eager" widths={[800,1200,1920]} sizes="100vw" />
+    <div class="absolute inset-0 flex items-end pb-16" style="background: var(--hero-overlay);">
+      <div class="max-w-[1320px] mx-auto w-full px-6">
+        <a href="/" class="block text-[0.75rem] font-semibold uppercase tracking-[0.1em] text-white/55 mb-5 no-underline hover:text-white/90 transition-colors">← Start</a>
+        <span class="block text-[0.65rem] font-bold uppercase tracking-[0.25em] text-white/60 border border-white/20 px-3 py-1 w-fit mb-4">Winter</span>
+        <h1 class="text-[clamp(3rem,7vw,6rem)] font-extrabold text-white tracking-[-0.04em] leading-[0.9] mb-2">Winter</h1>
+        <p class="text-[0.85rem] text-white/60 uppercase tracking-[0.15em] font-medium">Eisklettern & Skitouren in den Alpen</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Angebote list -->
+  <div class="max-w-[1320px] mx-auto px-6 py-16 pb-24 flex flex-col">
+    {angebote.map(a => (
+      <a
+        href={`/angebote/${a.id}`}
+        class="group grid grid-cols-1 md:grid-cols-[320px_1fr] no-underline border-b border-border overflow-hidden first:border-t transition-colors duration-200 hover:bg-surface"
+      >
+        <div class="overflow-hidden aspect-[4/3] md:aspect-auto">
+          <Image src={a.data.heroImage} alt={a.data.title} class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.04]" loading="lazy" widths={[400,800]} sizes="(max-width:900px) 100vw, 320px" />
+        </div>
+        <div class="flex flex-col gap-3 justify-center px-8 py-10">
+          <span class="text-[0.7rem] font-bold uppercase tracking-[0.18em] text-accent">Winter</span>
+          <h2 class="text-[1.75rem] font-bold text-stone tracking-[-0.02em]">{a.data.title}</h2>
+          <p class="text-[0.925rem] text-stone-mid leading-[1.7] max-w-[55ch]">{a.data.beschreibung}</p>
+          <div class="flex gap-2 flex-wrap mt-1">
+            {a.data.leistungen.slice(0,3).map(l => (
+              <span class="text-[0.65rem] font-bold uppercase tracking-[0.1em] text-stone-muted border border-border-strong px-2.5 py-0.5 rounded-full">{l}</span>
+            ))}
+          </div>
+          <span class="text-[0.78rem] font-bold uppercase tracking-[0.1em] text-accent mt-2">Details ansehen →</span>
+        </div>
+      </a>
+    ))}
+  </div>
+
+</Layout>

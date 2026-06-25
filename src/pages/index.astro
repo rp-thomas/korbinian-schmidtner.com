@@ -1,0 +1,127 @@
+---
+import { Image } from 'astro:assets';
+import Layout from '../layouts/Layout.astro';
+
+import heroImg    from '../assets/pics/hero-felsgrat-sonnenuntergang.jpg';
+import imgSommer  from '../assets/pics/sommer/hochtouren/gipfelgrat-hochalpin.jpg';
+import imgWinter  from '../assets/pics/winter/skitouren/skitour-fjordblick-norwegen.jpg';
+import imgGuide   from '../assets/pics/korbinian-portrait-patagonien.jpg';
+import imgKontakt from '../assets/pics/portrait-felsklettern-helm.jpg';
+
+const cards = [
+  { href: '/sommer',     title: 'Sommer',     subtitle: 'Felsklettern & Hochtouren', image: imgSommer  },
+  { href: '/winter',     title: 'Winter',     subtitle: 'Eisklettern & Skitouren',   image: imgWinter  },
+  { href: '/ueber-mich', title: 'Bergführer', subtitle: 'Über mich & Erfahrung',     image: imgGuide   },
+  { href: '/kontakt',    title: 'Anfrage',    subtitle: 'Tour anfragen',             image: imgKontakt },
+];
+---
+
+<Layout title="Start">
+
+  <!-- ─── Hero ─── -->
+  <section class="relative h-screen min-h-[600px] overflow-hidden max-md:h-[90vh]">
+    <Image
+      src={heroImg}
+      alt="Alpine Berglandschaft"
+      class="w-full h-full object-cover object-[center_25%]"
+      loading="eager"
+      widths={[800, 1200, 1920]}
+      sizes="100vw"
+    />
+    <!-- Overlay -->
+    <div class="absolute inset-0 flex items-center justify-start" style="background: var(--hero-overlay);">
+      <div class="max-w-[1320px] w-full mx-auto px-6 flex flex-col gap-6 pt-[76px]">
+
+        <!-- Cert badge -->
+        <span class="inline-block text-[0.65rem] font-bold uppercase tracking-[0.2em] text-white/70 bg-white/10 border border-white/20 px-3.5 py-1.5 w-fit">
+          Staatlich geprüfter Bergführer · IFMGA
+        </span>
+
+        <!-- Title -->
+        <h1 class="text-[clamp(3.5rem,8vw,7.5rem)] font-extrabold text-white tracking-[-0.04em] leading-[0.9] [text-shadow:0_4px_32px_rgba(0,0,0,0.3)] max-[480px]:text-[3.25rem]">
+          Korbinian<br/>Schmidtner
+        </h1>
+
+        <!-- Tagline -->
+        <p class="text-base text-white/70 uppercase tracking-[0.12em] font-medium max-w-[60ch]">
+          Hochtouren · Felsklettern · Eisklettern · Skitouren in den Alpen
+        </p>
+
+        <!-- Actions -->
+        <div class="flex gap-3 flex-wrap mt-2">
+          <a href="/kontakt" class="inline-flex items-center gap-2 bg-accent text-white px-8 py-3.5 text-sm font-bold uppercase tracking-[0.08em] no-underline rounded-sm transition-[background,transform] duration-200 hover:bg-accent-hover hover:-translate-y-0.5">
+            Tour anfragen
+          </a>
+          <a href="/sommer" class="inline-flex items-center gap-2 bg-transparent text-white px-7 py-3.5 text-sm font-semibold uppercase tracking-[0.08em] no-underline border border-white/50 rounded-sm transition-[background,border-color] duration-200 hover:bg-white/10 hover:border-white/80">
+            Angebote entdecken
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scroll hint -->
+    <div class="absolute bottom-8 left-1/2 text-white/40 text-xl" style="animation: var(--animate-bounce-scroll);" aria-hidden="true">
+      <span>↓</span>
+    </div>
+  </section>
+
+  <!-- ─── Intro ─── -->
+  <section class="max-w-[900px] mx-auto px-6 py-20 text-center">
+    <p class="text-[0.7rem] font-bold uppercase tracking-[0.18em] text-accent mb-3">Bergführer aus Leidenschaft</p>
+    <h2 class="text-[clamp(1.75rem,3vw,2.5rem)] font-bold tracking-[-0.025em] my-3 mb-6">Sicher. Professionell. Unvergesslich.</h2>
+    <p class="text-[1.05rem] text-stone-mid leading-[1.8] max-w-[60ch] mx-auto">
+      Als staatlich geprüfter Bergführer begleite ich Einsteiger und Fortgeschrittene sicher durch die faszinierende Welt des Alpinismus. Von steilen Eiswänden bis zu hochalpinen Gipfeln – immer mit Erfahrung, Kompetenz und Freude am Berg.
+    </p>
+  </section>
+
+  <!-- ─── Activity cards ─── -->
+  <section>
+    <!-- Top row: 2 cards -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-0.5">
+      {cards.slice(0,2).map(card => (
+        <a href={card.href} class="group relative block no-underline overflow-hidden aspect-[16/10] max-md:aspect-[4/3]">
+          <Image src={card.image} alt={card.title} class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.04]" loading="lazy" widths={[600, 1200]} sizes="50vw" />
+          <div class="absolute inset-0 flex flex-col justify-end p-6 md:p-8" style="background: var(--card-overlay);">
+            <h3 class="text-3xl font-extrabold text-white tracking-[-0.025em] mb-1.5">{card.title}</h3>
+            <p class="text-[0.8rem] text-white/65 uppercase tracking-[0.1em] font-medium mb-3">{card.subtitle}</p>
+            <span class="text-[0.78rem] font-bold uppercase tracking-[0.1em] text-accent block transition-transform duration-250 group-hover:translate-x-1.5">→ Entdecken</span>
+          </div>
+        </a>
+      ))}
+    </div>
+    <!-- Bottom row: 2 smaller cards -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-0.5 mt-0.5">
+      {cards.slice(2).map(card => (
+        <a href={card.href} class="group relative block no-underline overflow-hidden aspect-[16/9] max-md:aspect-[4/3]">
+          <Image src={card.image} alt={card.title} class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.04]" loading="lazy" widths={[600, 1200]} sizes="50vw" />
+          <div class="absolute inset-0 flex flex-col justify-end p-6 md:p-8" style="background: var(--card-overlay);">
+            <h3 class="text-3xl font-extrabold text-white tracking-[-0.025em] mb-1.5">{card.title}</h3>
+            <p class="text-[0.8rem] text-white/65 uppercase tracking-[0.1em] font-medium mb-3">{card.subtitle}</p>
+            <span class="text-[0.78rem] font-bold uppercase tracking-[0.1em] text-accent block transition-transform duration-250 group-hover:translate-x-1.5">→ Entdecken</span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- ─── Trust strip ─── -->
+  <section class="max-w-[1320px] mx-auto px-6 py-16 border-y border-border">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+      {[
+        { icon: '⛰', label: 'IFMGA Bergführer',    sub: 'International zertifiziert' },
+        { icon: '🏔', label: 'Staatlich geprüft',   sub: 'Bayern · Deutschland' },
+        { icon: '🎿', label: 'Ganzjährig aktiv',    sub: 'Sommer & Winter' },
+        { icon: '🧗', label: '20+ Jahre Erfahrung', sub: '500+ geführte Touren' },
+      ].map(item => (
+        <div class="flex items-start gap-4">
+          <span class="text-2xl shrink-0 mt-0.5">{item.icon}</span>
+          <div class="flex flex-col gap-1">
+            <span class="text-sm font-bold text-stone uppercase tracking-[0.04em]">{item.label}</span>
+            <span class="text-[0.78rem] text-stone-muted">{item.sub}</span>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+</Layout>

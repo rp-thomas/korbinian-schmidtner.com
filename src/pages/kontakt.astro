@@ -1,0 +1,57 @@
+---
+import { Image } from 'astro:assets';
+import Layout from '../layouts/Layout.astro';
+import ContactForm from '../components/ContactForm';
+import kontaktImg from '../assets/pics/portrait-felsklettern-helm.jpg';
+
+const details = [
+  { key: 'Antwortzeit',   val: 'Innerhalb 48 Stunden' },
+  { key: 'Verfügbarkeit', val: 'Ganzjährig · Sommer & Winter' },
+  { key: 'Qualifikation', val: 'Staatl. gepr. Bergführer · IFMGA' },
+];
+---
+
+<Layout title="Kontakt" description="Kontaktiere Korbinian Schmidtner für eine individuelle Touranfrage.">
+
+  <!-- Hero -->
+  <div class="relative h-[55vh] min-h-[380px] overflow-hidden">
+    <Image src={kontaktImg} alt="Alpine Berglandschaft" class="w-full h-full object-cover object-[center_40%]" loading="eager" widths={[800,1200,1920]} sizes="100vw" />
+    <div class="absolute inset-0 flex items-end pb-14" style="background: var(--hero-overlay);">
+      <div class="max-w-[1320px] mx-auto w-full px-6">
+        <a href="/" class="block text-[0.75rem] font-semibold uppercase tracking-[0.1em] text-white/55 mb-5 no-underline hover:text-white/90 transition-colors">← Start</a>
+        <h1 class="text-[clamp(2.5rem,6vw,5rem)] font-extrabold text-white tracking-[-0.04em] leading-[0.9] mb-2">Tour anfragen</h1>
+        <p class="text-[0.85rem] text-white/60 uppercase tracking-[0.15em] font-medium">Ich freue mich auf deine Nachricht</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Body -->
+  <div class="max-w-[1320px] mx-auto px-6 py-20 pb-24">
+    <div class="grid grid-cols-1 lg:grid-cols-[320px_1fr] gap-20 items-start">
+
+      <!-- Info -->
+      <div class="flex flex-col gap-5">
+        <span class="text-[0.7rem] font-bold uppercase tracking-[0.18em] text-accent">Kontakt</span>
+        <h2 class="text-[1.75rem] font-bold text-stone tracking-[-0.02em]">Schreib mir</h2>
+        <p class="text-[0.9rem] text-stone-mid leading-[1.75]">
+          Du hast Fragen zu meinen Touren oder möchtest eine individuelle Führung anfragen? Ich antworte in der Regel innerhalb von 48 Stunden.
+        </p>
+        <div class="flex flex-col">
+          {details.map(d => (
+            <div class="flex flex-col gap-1 py-3.5 border-b border-border first:border-t">
+              <span class="text-[0.62rem] font-bold uppercase tracking-[0.15em] text-stone-muted">{d.key}</span>
+              <span class="text-[0.85rem] font-medium text-stone">{d.val}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Form -->
+      <div>
+        <ContactForm client:load />
+      </div>
+
+    </div>
+  </div>
+
+</Layout>
