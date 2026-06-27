@@ -2,7 +2,7 @@
 import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
 import ContactForm from '../components/ContactForm';
-import kontaktImg from '../assets/pics/portrait-felsklettern-helm.jpg';
+import kontaktImg from '../assets/pics/kontakt.jpg';
 
 const details = [
   { key: 'Antwortzeit',   val: 'Innerhalb 48 Stunden' },
@@ -15,7 +15,7 @@ const details = [
 
   <!-- Hero -->
   <div class="relative h-[55vh] min-h-[380px] overflow-hidden">
-    <Image src={kontaktImg} alt="Alpine Berglandschaft" class="w-full h-full object-cover object-[center_40%]" loading="eager" widths={[800,1200,1920]} sizes="100vw" />
+    <Image src={kontaktImg} alt="Alpine Berglandschaft" class="w-full h-full object-cover object-[center_top]" loading="eager" widths={[800,1200,1920]} sizes="100vw" />
     <div class="absolute inset-0 flex items-end pb-14" style="background: var(--hero-overlay);">
       <div class="max-w-[1320px] mx-auto w-full px-6">
         <a href="/" class="block text-[0.75rem] font-semibold uppercase tracking-[0.1em] text-white/55 mb-5 no-underline hover:text-white/90 transition-colors">← Start</a>

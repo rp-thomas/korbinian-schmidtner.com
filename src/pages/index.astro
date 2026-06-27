@@ -6,7 +6,7 @@ import heroImg    from '../assets/pics/hero-felsgrat-sonnenuntergang.jpg';
 import imgSommer  from '../assets/pics/sommer/hochtouren/gipfelgrat-hochalpin.jpg';
 import imgWinter  from '../assets/pics/winter/skitouren/skitour-fjordblick-norwegen.jpg';
 import imgGuide   from '../assets/pics/korbinian-portrait-patagonien.jpg';
-import imgKontakt from '../assets/pics/portrait-felsklettern-helm.jpg';
+import imgKontakt from '../assets/pics/kontakt.jpg';
 
 const cards = [
   { href: '/sommer',     title: 'Sommer',     subtitle: 'Felsklettern & Hochtouren', image: imgSommer  },
@@ -109,9 +109,9 @@ const cards = [
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
       {[
         { icon: '⛰', label: 'IFMGA Bergführer',    sub: 'International zertifiziert' },
-        { icon: '🏔', label: 'Staatlich geprüft',   sub: 'Bayern · Deutschland' },
+        { icon: '🏔', label: 'Staatlich geprüft',   sub: '' },
         { icon: '🎿', label: 'Ganzjährig aktiv',    sub: 'Sommer & Winter' },
-        { icon: '🧗', label: '20+ Jahre Erfahrung', sub: '500+ geführte Touren' },
+        { icon: '🧗', label: '20+ Jahre Erfahrung', sub: '' },
       ].map(item => (
         <div class="flex items-start gap-4">
           <span class="text-2xl shrink-0 mt-0.5">{item.icon}</span>
