@@ -130,9 +130,43 @@ SES_TO_EMAIL=info@korbinian-schmidtner.com
 
 ## Development
 
+### Prerequisites
+
+| Tool | Version | Purpose |
+|---|---|---|
+| [Node.js](https://nodejs.org) | ≥ 22.12 | JavaScript runtime |
+| [pnpm](https://pnpm.io) | ≥ 10 | Package manager |
+
+**Install Node.js** (via [nvm](https://github.com/nvm-sh/nvm) — recommended):
+
 ```bash
-pnpm install
-pnpm dev          # http://localhost:4321
+# Install nvm
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
+
+# Install and use the required Node version
+nvm install 22
+nvm use 22
+```
+
+Or download directly from [nodejs.org](https://nodejs.org).
+
+**Install pnpm:**
+
+```bash
+npm install -g pnpm
+```
+
+Or via the standalone installer:
+
+```bash
+curl -fsSL https://get.pnpm.io/install.sh | sh -
+```
+
+### Setup & commands
+
+```bash
+pnpm install      # install dependencies
+pnpm dev          # start dev server at http://localhost:4321
 pnpm build        # production build → .vercel/output/
 pnpm preview      # preview the production build locally
 ```
