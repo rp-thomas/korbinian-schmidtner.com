@@ -3,12 +3,6 @@ import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
 import ContactForm from '../components/ContactForm';
 import kontaktImg from '../assets/pics/kontakt.jpg';
-
-const details = [
-  { key: 'Antwortzeit',   val: 'Innerhalb 48 Stunden' },
-  { key: 'Verfügbarkeit', val: 'Ganzjährig · Sommer & Winter' },
-  { key: 'Qualifikation', val: 'Staatl. gepr. Bergführer · IFMGA' },
-];
 ---
 
 <Layout title="Kontakt" description="Kontaktiere Korbinian Schmidtner für eine individuelle Touranfrage.">
@@ -36,14 +30,7 @@ const details = [
         <p class="text-[0.9rem] text-stone-mid leading-[1.75]">
           Du hast Fragen zu meinen Touren oder möchtest eine individuelle Führung anfragen? Ich antworte in der Regel innerhalb von 48 Stunden.
         </p>
-        <div class="flex flex-col">
-          {details.map(d => (
-            <div class="flex flex-col gap-1 py-3.5 border-b border-border first:border-t">
-              <span class="text-[0.62rem] font-bold uppercase tracking-[0.15em] text-stone-muted">{d.key}</span>
-              <span class="text-[0.85rem] font-medium text-stone">{d.val}</span>
-            </div>
-          ))}
-        </div>
+    
       </div>
 
       <!-- Form -->
