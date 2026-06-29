@@ -104,24 +104,5 @@ const cards = [
     </div>
   </section>
 
-  <!-- ─── Trust strip ─── -->
-  <section class="max-w-[1320px] mx-auto px-6 py-16 border-y border-border">
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-      {[
-        { icon: '⛰', label: 'IFMGA Bergführer',    sub: 'International zertifiziert' },
-        { icon: '🏔', label: 'Staatlich geprüft',   sub: '' },
-        { icon: '🎿', label: 'Ganzjährig aktiv',    sub: 'Sommer & Winter' },
-        { icon: '🧗', label: '20+ Jahre Erfahrung', sub: '' },
-      ].map(item => (
-        <div class="flex items-start gap-4">
-          <span class="text-2xl shrink-0 mt-0.5">{item.icon}</span>
-          <div class="flex flex-col gap-1">
-            <span class="text-sm font-bold text-stone uppercase tracking-[0.04em]">{item.label}</span>
-            <span class="text-[0.78rem] text-stone-muted">{item.sub}</span>
-          </div>
-        </div>
-      ))}
-    </div>
-  </section>
 
 </Layout>
