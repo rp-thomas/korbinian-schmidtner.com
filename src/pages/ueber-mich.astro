@@ -2,12 +2,39 @@
 import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
 import portraitImg from '../assets/pics/korbinian-portrait-patagonien.jpg';
+import ivbvLogoImg from '../assets/pics/logos/ivbv-E-Mail.jpg';
+import voebsLogoImg from '../assets/pics/logos/IVBV_Logo_National_Neu_1c.jpg'
 
 const credentials = [
-  { label: 'Staatlich geprüfter Berg- und Skiführer', sub: '' },
-  { label: 'IFMGA Mitglied',                 sub: 'International Federation of Mountain Guides Associations' },
-  { label: '20+ Jahre alpine Erfahrung',     sub: 'Sommer & Winter · Alle Disziplinen' },
-  { label: 'Individuelle Tourenplanung',     sub: 'Einsteiger bis Fortgeschrittene' },
+  {
+    label: 'Staatlich geprüfter Berg- und Skiführer',
+    sub: [],
+  },
+  {
+    label: 'IFMGA Mitglied',
+    sub: [
+      {
+        text: 'International Federation of Mountain Guides Associations',
+        href: 'https://ifmga.net/',
+      },
+      {
+        text: 'Verband der Österreichischen Berg- und Skiführer',
+        href: 'https://www.bergfuehrer.at/',
+      },
+    ],
+  },
+  {
+    label: '20+ Jahre alpine Erfahrung',
+    sub: [
+      { text: 'Sommer & Winter · Alle Disziplinen' },
+    ],
+  },
+  {
+    label: 'Individuelle Tourenplanung',
+    sub: [
+      { text: 'Einsteiger bis Fortgeschrittene' },
+    ],
+  },
 ];
 ---
 
@@ -40,18 +67,54 @@ const credentials = [
         <p class="text-[0.975rem] text-stone-mid leading-[1.8]">
           Sicherheit, professionelle Planung und individuelle Betreuung stehen bei jeder Unternehmung an erster Stelle. Mein Ziel ist es, unvergessliche Bergerlebnisse zu schaffen und gleichzeitig Wissen, Technik und Freude am Bergsport weiterzugeben.
         </p>
+		
+		<!-- Image -->
+		<div class="flex justify-center items-center gap-20">
+		  <Image
+			  src={ivbvLogoImg}
+			  alt="Bergführer"
+			  width={125}
+			/>
+		  <Image
+			  src={voebsLogoImg}
+			  alt="Second Logo"
+			  width={150}
+		    />
+		</div>
+		
         <a href="/kontakt" class="self-start mt-2 inline-flex items-center gap-2 bg-accent text-white px-8 py-3.5 text-sm font-bold uppercase tracking-[0.08em] no-underline rounded-sm transition-[background,transform] duration-200 hover:bg-accent-hover hover:-translate-y-0.5">
           Tour anfragen
         </a>
-      </div>
+           </div>
 
       <!-- Credentials -->
       <div class="flex flex-col lg:sticky lg:top-20">
-        <span class="text-[0.7rem] font-bold uppercase tracking-[0.18em] text-accent mb-4">Qualifikationen</span>
+        <span class="text-[0.7rem] font-bold uppercase tracking-[0.18em] text-accent mb-4">
+          Qualifikationen
+        </span>
+
         {credentials.map(c => (
           <div class="flex flex-col gap-1 py-5 border-b border-border first:border-t">
-            <span class="text-[0.875rem] font-bold text-stone uppercase tracking-[0.04em]">{c.label}</span>
-            <span class="text-[0.75rem] text-stone-muted">{c.sub}</span>
+            <span class="text-[0.875rem] font-bold text-stone uppercase tracking-[0.04em]">
+              {c.label}
+            </span>
+
+            {c.sub.map(item => (
+              <span class="text-[0.75rem] text-stone-muted">
+                {item.href ? (
+                  <a
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="hover:text-accent underline"
+                  >
+                    {item.text}
+                  </a>
+                ) : (
+                  item.text
+                )}
+              </span>
+            ))}
           </div>
         ))}
       </div>
