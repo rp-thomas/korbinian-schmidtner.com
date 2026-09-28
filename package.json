@@ -12,7 +12,7 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/react": "^6.0.5",
+    "@astrojs/react": "^7.0.0",
     "@astrojs/sitemap": "^3.7.4",
     "@astrojs/vercel": "^11.0.10",
     "@aws-sdk/client-ses": "^3.1130.0",
