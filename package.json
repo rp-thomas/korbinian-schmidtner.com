@@ -12,18 +12,18 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/react": "^7.1.2",
+    "@astrojs/react": "^7.1.4",
     "@astrojs/sitemap": "^3.7.4",
-    "@astrojs/vercel": "^11.0.17",
-    "@aws-sdk/client-ses": "^3.1160.0",
-    "@tailwindcss/vite": "^4.3.3",
+    "@astrojs/vercel": "^11.0.20",
+    "@aws-sdk/client-ses": "^3.1163.0",
+    "@tailwindcss/vite": "^4.3.4",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
-    "astro": "^7.4.4",
+    "astro": "^7.4.7",
     "react": "^19.3.1",
     "react-dom": "^19.3.1",
     "sharp": "^0.35.5",
-    "tailwindcss": "^4.3.3",
+    "tailwindcss": "^4.3.4",
     "zod": "^4.6.7"
   }
 }
