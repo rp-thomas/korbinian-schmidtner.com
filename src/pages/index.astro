@@ -22,6 +22,8 @@ const cards = [
   <section class="relative h-screen min-h-[600px] overflow-hidden max-md:h-[90vh]">
     <Image
       src={heroImg}
+      quality={80}
+      width={1920}
       alt="Alpine Berglandschaft"
       class="w-full h-full object-cover object-[center_25%]"
       loading="eager"
@@ -80,7 +82,7 @@ const cards = [
     <div class="grid grid-cols-1 md:grid-cols-2 gap-0.5">
       {cards.slice(0,2).map(card => (
         <a href={card.href} class="group relative block no-underline overflow-hidden aspect-[16/10] max-md:aspect-[4/3]">
-          <Image src={card.image} alt={card.title} class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.04]" loading="lazy" widths={[600, 1200]} sizes="50vw" />
+          <Image src={card.image} quality={80} width={1200} alt={card.title} class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.04]" loading="lazy" widths={[600, 1200]} sizes="50vw" />
           <div class="absolute inset-0 flex flex-col justify-end p-6 md:p-8" style="background: var(--card-overlay);">
             <h3 class="text-3xl font-extrabold text-white tracking-[-0.025em] mb-1.5">{card.title}</h3>
             <p class="text-[0.8rem] text-white/65 uppercase tracking-[0.1em] font-medium mb-3">{card.subtitle}</p>
@@ -93,7 +95,7 @@ const cards = [
     <div class="grid grid-cols-1 md:grid-cols-2 gap-0.5 mt-0.5">
       {cards.slice(2).map(card => (
         <a href={card.href} class="group relative block no-underline overflow-hidden aspect-[16/9] max-md:aspect-[4/3]">
-          <Image src={card.image} alt={card.title} class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.04]" loading="lazy" widths={[600, 1200]} sizes="50vw" />
+          <Image src={card.image} quality={80} width={1200} alt={card.title} class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.04]" loading="lazy" widths={[600, 1200]} sizes="50vw" />
           <div class="absolute inset-0 flex flex-col justify-end p-6 md:p-8" style="background: var(--card-overlay);">
             <h3 class="text-3xl font-extrabold text-white tracking-[-0.025em] mb-1.5">{card.title}</h3>
             <p class="text-[0.8rem] text-white/65 uppercase tracking-[0.1em] font-medium mb-3">{card.subtitle}</p>

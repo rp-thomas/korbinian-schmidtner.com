@@ -20,7 +20,7 @@ const backLabel = kategorie === 'sommer' ? '← Sommer' : '← Winter';
 
   <!-- Hero -->
   <div class="relative h-[65vh] min-h-[420px] overflow-hidden">
-    <Image src={heroImage} alt={title} class="w-full h-full object-cover" loading="eager" widths={[800,1200,1920]} sizes="100vw" />
+    <Image src={heroImage} quality={80} width={1920} alt={title} class="w-full h-full object-cover" loading="eager" widths={[800,1200,1920]} sizes="100vw" />
     <div class="absolute inset-0 flex items-end pb-16" style="background: var(--hero-overlay);">
       <div class="max-w-[1320px] mx-auto w-full px-6">
         <a href={backHref} class="block text-[0.72rem] font-bold uppercase tracking-[0.12em] text-white/60 mb-5 no-underline hover:text-white/95 transition-colors">{backLabel}</a>

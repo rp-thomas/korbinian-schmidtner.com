@@ -13,7 +13,7 @@ const angebote = (await getCollection('angebote'))
 
   <!-- Hero -->
   <div class="relative h-[65vh] min-h-[420px] overflow-hidden">
-    <Image src={heroImageSrc} alt="Winterbergsteigen" class="w-full h-full object-cover object-[center_30%]" loading="eager" widths={[800,1200,1920]} sizes="100vw" />
+    <Image src={heroImageSrc} quality={80} width={1920} alt="Winterbergsteigen" class="w-full h-full object-cover object-[center_30%]" loading="eager" widths={[800,1200,1920]} sizes="100vw" />
     <div class="absolute inset-0 flex items-end pb-16" style="background: var(--hero-overlay);">
       <div class="max-w-[1320px] mx-auto w-full px-6">
         <a href="/" class="block text-[0.75rem] font-semibold uppercase tracking-[0.1em] text-white/55 mb-5 no-underline hover:text-white/90 transition-colors">← Start</a>
@@ -32,7 +32,7 @@ const angebote = (await getCollection('angebote'))
         class="group grid grid-cols-1 md:grid-cols-[320px_1fr] no-underline border-b border-border overflow-hidden first:border-t transition-colors duration-200 hover:bg-surface"
       >
         <div class="overflow-hidden aspect-[4/3] md:aspect-auto">
-          <Image src={a.data.heroImage} alt={a.data.title} class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.04]" loading="lazy" widths={[400,800]} sizes="(max-width:900px) 100vw, 320px" />
+          <Image src={a.data.heroImage} quality={80} width={800} alt={a.data.title} class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.04]" loading="lazy" widths={[400,800]} sizes="(max-width:900px) 100vw, 320px" />
         </div>
         <div class="flex flex-col gap-3 justify-center px-8 py-10">
           <span class="text-[0.7rem] font-bold uppercase tracking-[0.18em] text-accent">Winter</span>

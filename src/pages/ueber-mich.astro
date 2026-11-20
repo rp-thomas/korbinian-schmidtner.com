@@ -42,7 +42,7 @@ const credentials = [
 
   <!-- Hero -->
   <div class="relative h-[70vh] min-h-[450px] overflow-hidden">
-    <Image src={portraitImg} alt="Korbinian Schmidtner – Bergführer" class="w-full h-full object-cover object-[center_top]" loading="eager" widths={[800,1200,1920]} sizes="100vw" />
+    <Image src={portraitImg} quality={80} width={1920} alt="Korbinian Schmidtner – Bergführer" class="w-full h-full object-cover object-[center_top]" loading="eager" widths={[800,1200,1920]} sizes="100vw" />
     <div class="absolute inset-0 flex items-end pb-16" style="background: var(--hero-overlay);">
       <div class="max-w-[1320px] mx-auto w-full px-6">
         <a href="/" class="block text-[0.75rem] font-semibold uppercase tracking-[0.1em] text-white/55 mb-5 no-underline hover:text-white/90 transition-colors">← Start</a>
@@ -72,11 +72,13 @@ const credentials = [
 		<div class="flex justify-center items-center gap-20">
 		  <Image
 			  src={ivbvLogoImg}
+			  quality={80}
 			  alt="Bergführer"
 			  width={125}
 			/>
 		  <Image
 			  src={voebsLogoImg}
+			  quality={80}
 			  alt="Second Logo"
 			  width={150}
 		    />

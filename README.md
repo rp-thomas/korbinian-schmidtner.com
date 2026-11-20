@@ -134,7 +134,7 @@ SES_TO_EMAIL=info@korbinian-schmidtner.com
 
 | Tool | Version | Purpose |
 |---|---|---|
-| [Node.js](https://nodejs.org) | ≥ 22.12 | JavaScript runtime |
+| [Node.js](https://nodejs.org) | ≥ 22.23.4 | JavaScript runtime |
 | [pnpm](https://pnpm.io) | ≥ 10 | Package manager |
 
 **Install Node.js** (via [nvm](https://github.com/nvm-sh/nvm) — recommended):

@@ -11,6 +11,9 @@ export default defineConfig({
   output: 'server',
   adapter: vercel({
     imageService: true,
+    imagesConfig: {
+      sizes: [125, 150, 400, 600, 800, 1200, 1920],
+    },
   }),
   integrations: [
     react(),
